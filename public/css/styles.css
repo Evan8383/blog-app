@@ -1,0 +1,37 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+html {
+  max-width: 1200px;
+  margin: auto;
+  background-color: #60668890
+}
+
+nav h1 {
+  text-align: center;
+  width: 500px;
+  margin: auto;
+  padding-top: 1em
+}
+nav h1 a {
+  text-decoration: none;
+  color: black;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5em;
+  justify-content: center;
+  text-align: center;
+  padding-top: .5em
+
+}
+
+nav ul a {
+  cursor: pointer;
+  text-decoration: none;
+}

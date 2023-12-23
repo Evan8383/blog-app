@@ -1,4 +1,5 @@
-require('dotenv').config()
+// require('dotenv').config()
+const path = require('path');
 const express = require('express');
 const sequelize = require('./config/connection');
 const routes = require('./routes')
@@ -9,8 +10,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const app = express();
 const PORT = 3001;
 
-const exphbs = require('express-handlebars');
-
+// session options
 app.use(session({
   secret: process.env.SECRET,
   cookie: {},
@@ -23,14 +23,20 @@ app.use(session({
   })
 }));
 
+// setup and use handlebars
+const exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
+// server options
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, 'public')))
 
+// routes
 app.use(routes)
 
+// starting the server
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT)
 });
